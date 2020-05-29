@@ -16,7 +16,7 @@ The basic idea is given below:
 >3. Segment out the red colored cloth by generating a mask.
 >4. Generate the final augmented output to create the magical effect.
 
-**Key Idea** : *To replace the current frame pixels corresponding to the cloth with the background pixels to generate the effect of an invisibility cloak.*
+* **Key Idea** : To replace the current frame pixels corresponding to the cloth with the background pixels to generate the effect of an invisibility cloak.
 
 ### 1. Capture and store the background frame.
 ```
