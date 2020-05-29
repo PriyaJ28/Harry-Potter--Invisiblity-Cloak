@@ -18,3 +18,12 @@ The basic idea is given below:
 
 ### 1. Capture and store the background frame.
 > cap = cv2.VideoCapture(0)
+time.sleep(3)
+
+backgrd = 0
+
+for i in range(30):
+    _,backgrd = cap.read()
+
+#Laterally flip the image
+backgrd = np.flip(backgrd,axis = 1)
