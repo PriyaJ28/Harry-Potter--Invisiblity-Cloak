@@ -5,7 +5,6 @@
 ## Introduction:
 If you are a Harry Potter fan like me, you would know what an Invisibility Cloak is. 
 Yes! It’s the cloak which Harry Potter uses to become invisible. Of course, we all know that an invisibility cloak is not real — it’s all graphics trickery.
-Here's a clip from harry potter of the magical moment.
 
 ![hp](https://github.com/PriyaJ28/Harry-Potter--Invisiblity-Cloak/blob/master/ezgif.com-video-to-gif.gif)
 
