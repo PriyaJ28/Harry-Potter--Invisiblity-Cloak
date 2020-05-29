@@ -5,6 +5,9 @@
 ## Introduction:
 If you are a Harry Potter fan like me, you would know what an Invisibility Cloak is. 
 Yes! It’s the cloak which Harry Potter uses to become invisible. Of course, we all know that an invisibility cloak is not real — it’s all graphics trickery.
+Here's a clip from harry potter of the magical moment.
+
+![hp](https://github.com/PriyaJ28/Harry-Potter--Invisiblity-Cloak/blob/master/ezgif.com-video-to-gif.gif)
 
 ## How does it work ?
 The algorithm is very similar in principle to green screening. But unlike green screening where we remove the background, in this application, we remove the foreground!
@@ -32,18 +35,18 @@ for i in range(30):
 backgrd = np.flip(backgrd,axis = 1)
 
 ```
-Averaging over multiple frames also reduces noise.
+* Averaging over multiple frames also reduces noise.
 
 ### 2. Detect the red colored cloth using color detection algorithm.
 We have an RGB (Red-Green-Blue) image and it is tempting to simply threshold the R channel and get our mask. It turns out that this will not work effectively since the RGB values are highly sensitive to illumination. Hence even though the cloak is of red color there might be some areas where, due-to shadow, Red channel values of the corresponding pixels are quite low.
 
-The right approach is to transform the color space of our image from RGB to HSV (Hue – Saturation – Value).
+* The right approach is to transform the color space of our image from RGB to HSV (Hue – Saturation – Value).
 
 ```
 hsv = cv2.cvtColor(img,cv2.COLOR_BGR2HSV)
 
 ```
-you can change color bound according to the color you want to mask. The color range for HSV can be accessed from ![here](http://colorizer.org/).
+* you can change color bound according to the color you want to mask. The color range for HSV can be accessed from ![here](http://colorizer.org/).
 
 ```
     #range for lower red
@@ -60,11 +63,11 @@ you can change color bound according to the color you want to mask. The color ra
     mask = mask1+mask2
 
 ```
-The inRange function simply returns a binary mask.
+* The inRange function simply returns a binary mask.
 
 ### 3: Segmenting out the detected red colored cloth
 
-In the previous step, we generated a mask to determine the region in the frame corresponding to the detected color. We refine this mask and then use it for segmenting out the cloth from the frame. 
+* In the previous step, we generated a mask to determine the region in the frame corresponding to the detected color. We refine this mask and then use it for segmenting out the cloth from the frame. 
 ```
 mask1 = cv2.morphologyEx(mask, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8)) 
 mask1 = cv2.morphologyEx(mask, cv2.MORPH_DILATE, np.ones((3,3),np.uint8)) 
@@ -75,7 +78,7 @@ mask2 = cv2.bitwise_not(mask1)
 
 Finally, we replace the pixel values of the detected red color region with corresponding pixel values of the static background and finally generate an augmented output which creates the magical effect, converting our cloth into an invisibility cloak.
 
-To do this we use bitwise_and operation first to create an image with pixel values, corresponding to the detected region, equal to the pixel values of the static background and then add the output to the image (res1) from which we had segmented out the red cloth.
+* To do this we use bitwise_and operation first to create an image with pixel values, corresponding to the detected region, equal to the pixel values of the static background and then add the output to the image (res1) from which we had segmented out the red cloth.
 
 ```
 res1 = cv2.bitwise_and(img,img,mask=mask2)
